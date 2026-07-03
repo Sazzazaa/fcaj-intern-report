@@ -20,4 +20,4 @@ Các điểm chính cần nắm:
 
 ![Blog 1](/images/3-BlogsPosted/blog-1.png)
 
-[Link bài viết gốc: Modernizing financial analytics with Amazon SageMaker Unified Studio](https://aws.amazon.com/vi/blogs/architecture/modernizing-financial-analytics-with-amazon-sagemaker-unified-studio/)
+[Link bài viết gốc: Modernizing financial analytics with Amazon SageMaker Unified Studio](https://www.facebook.com/groups/660548818043427/)

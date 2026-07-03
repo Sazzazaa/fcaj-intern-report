@@ -20,5 +20,5 @@ Các điểm chính cần nắm:
 
 ![Blog 3](/images/3-BlogsPosted/blog-3.png)
 
-[Link bài viết gốc: Preventing data exfiltration in machine learning environments with Amazon SageMaker AI](https://aws.amazon.com/vi/blogs/architecture/preventing-data-exfiltration-in-machine-learning-environments-with-amazon-sagemaker-ai/)
+[Link bài blog: Preventing data exfiltration in machine learning environments with Amazon SageMaker AI](https://www.facebook.com/groups/660548818043427/)
 

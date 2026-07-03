@@ -1,9 +1,9 @@
 ---
-title: "Event 1"
-date: 2026-05-09
-weight: 1
+title: "Event 3"
+date: 2026-06-20
+weight: 3
 chapter: false
-pre: " <b> 4.1. </b> "
+pre: " <b> 4.3. </b> "
 ---
 
 # Bài thu hoạch “FCAJ Community Day”

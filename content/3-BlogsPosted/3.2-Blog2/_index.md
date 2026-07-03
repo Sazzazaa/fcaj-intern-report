@@ -20,5 +20,5 @@ Key takeaways:
 
 ![Blog 2](/images/3-BlogsPosted/blog-2.png)
 
-[Original article link: Build interactive PDF text extraction from Amazon S3](https://aws.amazon.com/vi/blogs/machine-learning/build-interactive-pdf-text-extraction-from-amazon-s3/)
+[Blog link: Build interactive PDF text extraction from Amazon S3](https://www.facebook.com/groups/660548818043427/)
 

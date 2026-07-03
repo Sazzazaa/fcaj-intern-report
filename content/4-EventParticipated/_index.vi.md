@@ -12,7 +12,7 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 ### [Event 1](4.1-Event1/)
 &emsp;**Tên sự kiện:** FCAJ Community Day (09-05-2026)
 
-&emsp;**Thời gian:** Sáng ngày 09/05/2026
+&emsp;**Thời gian:** Sáng 09:00 ngày 09/05/2026
 
 &emsp;**Địa điểm:** Offline Meetup - Sự kiện cộng đồng FCAJ Cloud Journey
 
@@ -23,7 +23,16 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 ### [Event 2](4.2-Event2/)
 &emsp;**Tên sự kiện:** FCAJ Community Day (23-05-2026)
 
-&emsp;**Thời gian:** Sáng ngày 23/05/2026
+&emsp;**Thời gian:** Sáng 09:00 ngày 23/05/2026
+
+&emsp;**Địa điểm:** Offline Meetup - Sự kiện cộng đồng FCAJ Cloud Journey
+
+&emsp;**Vai trò trong sự kiện:** Người tham dự
+
+### [Event 3](4.3-Event3/)
+&emsp;**Tên sự kiện:** FCAJ Community Day (20-06-2026)
+
+&emsp;**Thời gian:** Sáng 09:00 ngày 20/06/2026
 
 &emsp;**Địa điểm:** Offline Meetup - Sự kiện cộng đồng FCAJ Cloud Journey
 

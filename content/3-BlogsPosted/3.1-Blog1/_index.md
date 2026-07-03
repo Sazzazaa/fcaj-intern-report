@@ -20,5 +20,5 @@ Key takeaways:
 
 ![Blog 1](/images/3-BlogsPosted/blog-1.png)
 
-[Original article link: Modernizing financial analytics with Amazon SageMaker Unified Studio](https://aws.amazon.com/vi/blogs/architecture/modernizing-financial-analytics-with-amazon-sagemaker-unified-studio/)
+[Original article link: Modernizing financial analytics with Amazon SageMaker Unified Studio](https://www.facebook.com/groups/660548818043427/)
 
