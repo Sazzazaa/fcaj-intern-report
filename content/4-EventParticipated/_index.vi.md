@@ -30,7 +30,7 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 &emsp;**Vai trò trong sự kiện:** Người tham dự
 
 ### [Event 3](4.3-Event3/)
-&emsp;**Tên sự kiện:** FCAJ Community Day (20-06-2026)
+&emsp;**Tên sự kiện:** AWS GameDay - 8 Đội Tranh Hùng (20-06-2026)
 
 &emsp;**Thời gian:** Sáng 09:00 ngày 20/06/2026
 

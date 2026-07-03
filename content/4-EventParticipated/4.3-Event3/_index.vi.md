@@ -6,85 +6,80 @@ chapter: false
 pre: " <b> 4.3. </b> "
 ---
 
-# Bài thu hoạch “FCAJ Community Day”
+# Bài thu hoạch “AWS GameDay - 8 Đội Tranh Hùng”
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ phương pháp "hack não bộ" để duy trì động lực học tập bền vững.
-- Hướng dẫn kỹ năng Prompt Engineering để tối ưu hóa đầu ra của AI.
-- Định hướng tư duy nghề nghiệp, tầm quan trọng của nền tảng (foundation) và sự liêm chính (integrity) cho sinh viên/fresher.
-- Giới thiệu phương pháp BMX Method giúp tối ưu hóa quy trình phát triển phần mềm với sự hỗ trợ của AI.
+- Tạo sân chơi thi đấu kiến thức công nghệ thực tế và kịch tính trên nền tảng AWS
+- Đánh giá khả năng phản xạ, xử lý tình huống và tư duy kiến trúc hệ thống của các đội
+- Rèn luyện kỹ năng làm bài thi chứng chỉ AWS thông qua format trắc nghiệm tính giờ
+- Kết nối cộng đồng đam mê điện toán đám mây
 
-### Danh Sách Diễn Giả
+### Thành Phần Tham Dự
 
-- **Anh Khang** - Chia sẻ về động lực học tập và định hướng mindset nghề nghiệp
-- **Speaker (Chưa rõ tên)** - Chia sẻ về kỹ năng Prompt Engineering và demo dự án AI Serverless trên AWS
-- **Anh Thảo** - Software Developer tại VIB, trình bày về phương pháp phát triển phần mềm BMX
+- **Ban tổ chức & Trọng tài** - Các chuyên gia AWS chịu trách nhiệm ra đề và kiểm soát trận đấu
+- **8 Đội thi** - Các thí sinh xuất sắc tham gia tranh tài trực tiếp trên sân khấu
+- **Khán giả** - Những người theo dõi, cổ vũ và học hỏi kiến thức từ các lượt đấu
 
 ### Nội Dung Nổi Bật
 
-#### Động lực học tập và "Hack" não bộ
-- **Bản chất của sự trì hoãn:** Các nền tảng mạng xã hội và game online lợi dụng cơ chế tiết dopamine (phần thưởng nhanh, tính tò mò) để giữ chân người dùng. Trong khi đó, việc học mang lại kết quả chậm.
-- **Phương pháp khắc phục:** 
-  - Tạo các "streak" (chuỗi) học tập hàng ngày để dùng nỗi sợ "mất chuỗi" làm động lực duy trì.
-  - Chia nhỏ mục tiêu học (ví dụ: chia nhỏ từng dịch vụ AWS thay vì dồn học 5 tiếng/ngày) để tránh cảm giác bị ngợp.
-  - Tự tạo ra các phần thưởng nhỏ ngẫu nhiên cho bản thân sau mỗi phiên học.
+#### Thể thức thi đấu đối kháng (Knockout)
 
-#### Ultimate Prompt Engineering
-- **7 thành phần của một Prompt chuẩn:** Role, Task, Context, Input, Example, Output format, và Constraint.
-- **Kỹ thuật tối ưu hóa:** Cần cung cấp đầy đủ thông tin, sử dụng dấu phân cách để chia section, chia nhỏ input dài và đặc biệt tránh gộp nhiều chủ đề không liên quan vào một luồng chat để hạn chế tình trạng AI bị "hallucination" (ảo giác).
-- **AWS Architecture Demo:** Giới thiệu hệ thống thực tế tối ưu prompt sử dụng kiến trúc Serverless (CloudFront, S3, API Gateway, Lambda, Amazon Bedrock, DynamoDB, Cognito).
+- **Cấu trúc giải đấu:** 8 đội chia thành các cặp thi đấu trực tiếp (1 vs 1) qua các vòng Tứ kết, Bán kết và Chung kết.
+- **Giới hạn trận đấu:** Mỗi lượt đấu sẽ giải quyết đúng 10 câu hỏi trắc nghiệm được hiển thị chung trên màn hình lớn.
 
-#### Tư duy nghề nghiệp & Mindset đi làm
-- **AI Amplify (Khuếch đại):** AI không thay thế lập trình viên, nó chỉ làm nền tảng hiện tại của bạn lớn hơn (người giỏi sẽ giỏi hơn, người tệ sẽ tệ hơn). Do đó, "Foundation" (nền tảng cốt lõi) luôn là thứ quan trọng nhất.
-- **Mindset "Why":** Luôn đặt câu hỏi "Tại sao?" thay vì chỉ tập trung vào "Làm gì?" khi tiếp cận một công nghệ hay kiến trúc hệ thống.
-- **Sự liêm chính (Integrity):** Là tính tự giác hoàn thiện đến cùng các trường hợp ngoại lệ (edge cases) trong code dù không bị quản lý giám sát trực tiếp. 
-- **Đánh giá lợi ích công việc:** Không chỉ nhìn vào mức lương ngắn hạn, mà cần cân nhắc tới kinh nghiệm, network, và kiến thức thực tế thu nạp được.
+#### Luật tính điểm "Sinh tử"
 
-#### BMX Method - Ứng dụng AI trong SDLC
-- **Vấn đề của cách làm cũ:** Liên tục prompt yêu cầu cho AI mà không có thiết kế tổng quan sẽ sinh ra "code rác", dễ bị gãy hệ thống khi update.
-- **Giải pháp BMX Method:**
-  - Áp dụng triết lý "Document-driven": Viết document chuẩn xác để AI tự đọc và code.
-  - Tách nhỏ dự án theo quy trình: Epic -> Story -> Sub-tasks.
-  - Phân vai rõ ràng cho các AI Agents (PM, Architect, Scrum Master, Developer, Reviewer) để giữ AI luôn trong đúng ngữ cảnh, tránh overlap.
+Quy tắc **"Đúng cộng - Sai trừ"** tạo ra áp lực cực lớn cho các đội:
+- **Trả lời đúng:** Đội được cộng điểm lợi thế.
+- **Trả lời sai:** Đội bị trừ điểm trực tiếp vào tổng điểm hiện có.
+- **Không trả lời:** Chấp nhận giữ nguyên điểm số, không bị phạt.
+
+#### Phân loại câu hỏi AWS
+
+- **Kiến thức nền tảng:** Các câu hỏi tốc độ, yêu cầu định nghĩa nhanh chức năng của một dịch vụ cụ thể (tương đương cấp độ Cloud Practitioner).
+- **Tình huống hệ thống:** Các câu hỏi dài, mô tả vấn đề của doanh nghiệp và yêu cầu chọn giải pháp kiến trúc tối ưu (tương đương cấp độ Solutions Architect).
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế & Lập Trình
-- **Foundation-first approach:** Doanh nghiệp đề cao tư duy giải quyết vấn đề và nền tảng hạ tầng vững chắc hơn là việc biết dùng thật nhiều frameworks bề nổi.
-- **Tư duy chất lượng mã nguồn:** Việc ứng dụng AI phải gắn liền với thiết kế kiến trúc chuẩn từ đầu, không thể giao phó toàn bộ vòng đời sản phẩm cho LLM mà thiếu sự kiểm soát của con người.
+#### Chiến Thuật Làm Bài Trắc Nghiệm
 
-#### Kiến Trúc Kỹ Thuật
-- **Prompt Architecture:** Cách setup role, context và constrain cho AI để tăng tính chính xác.
-- **Tích hợp mô hình:** Nắm bắt luồng hoạt động cơ bản của một ứng dụng GenAI trên môi trường AWS (sử dụng Amazon Bedrock kết hợp Lambda backend).
+- **Kỷ luật làm bài:** Tuyệt đối không "đoán mò" (đánh lụi). Thà bỏ qua câu hỏi để bảo toàn điểm số còn hơn chọn sai và bị trừ điểm oan uổng.
+- **Kỹ năng Scan Keyword:** Không đọc từng chữ trong đề bài dài. Tập trung quét các từ khóa cốt lõi (ví dụ: *most cost-effective*, *decouple*, *single-digit millisecond latency*) để định hình ngay hướng giải quyết.
+- **Nghệ thuật loại trừ:** Không vội vàng tìm câu đúng, mà tập trung chỉ ra điểm vô lý của 3 đáp án sai để chốt lại lựa chọn cuối cùng an toàn nhất.
 
-#### Chiến Lược Công Việc
-- **Nhìn nhận dài hạn:** Ưu tiên môi trường cung cấp trải nghiệm, network và bài học thực chiến ở giai đoạn fresher.
-- **Chấp nhận sai lầm:** Sai lầm là một phần để phát triển kỹ năng nhanh chóng, miễn là biết phân tích gốc rễ (why) và có integrity để chủ động sửa lỗi.
+#### Kiến Thức Công Nghệ Thực Chiến
 
-### Ứng Dụng Vào Công Việc
+- **Phản xạ dịch vụ:** Nắm vững bản chất của hệ sinh thái AWS để có thể "khớp" yêu cầu với dịch vụ chỉ trong 1-2 giây.
+- **Architecture Patterns:** Hiểu rõ cách phối hợp các dịch vụ (ví dụ: dùng SQS làm buffer trước Lambda để chống nghẽn, hoặc chọn Spot Instances khi cần tối ưu chi phí cho batch processing).
 
-- **Áp dụng Prompt Engineering chuẩn:** Cấu trúc lại các lời nhắc (prompts) khi dùng AI trong công việc hàng ngày thành 7 bước rõ ràng để rút ngắn thời gian debug.
-- **Triển khai BMX Method:** Ở các task lập trình sắp tới, tôi sẽ tập trung viết Document và vẽ Architecture phân tích tính năng trước khi nhờ AI hỗ trợ sinh code hay refactor.
-- **Tạo Daily Streak:** Lên lịch duy trì việc commit code hoặc học tài liệu kỹ thuật về AWS mỗi ngày, liên tục không ngắt quãng để xây dựng thói quen.
-- **Luyện tập câu hỏi "Why":** Phân tích kỹ lý do đằng sau các pattern đang được sử dụng trong codebase hiện tại của công ty.
+#### Tâm Lý Thi Đấu
+
+- **Giữ "cái đầu lạnh":** Sự vội vàng ở những câu hỏi đầu tiên thường dẫn đến sai lầm. Cần giữ bình tĩnh ngay cả khi bị đối thủ dẫn trước.
+- **Tập trung cao độ:** Chắt chiu từng cơ hội trong giới hạn 10 câu hỏi, vì một câu trả lời đúng ở phút chót có thể lật ngược hoàn toàn thế cờ.
+
+### Ứng Dụng Vào Công Việc (Và Học Tập)
+
+- **Luyện thi chứng chỉ AWS:** Áp dụng ngay phương pháp *scan keyword* và *chiến thuật loại trừ* vào quá trình ôn luyện thi chứng chỉ.
+- **Thiết kế hệ thống:** Cân nhắc kỹ các yếu tố về chi phí, độ trễ và khả năng chịu lỗi (fault-tolerant) khi đề xuất giải pháp công nghệ cho dự án hiện tại.
+- **Rèn luyện tâm lý:** Tự đặt giờ và áp dụng luật "sai trừ điểm" khi làm bài thi thử (mock exam) ở nhà để làm quen với áp lực phòng thi.
 
 ### Trải nghiệm trong event
 
-Tham gia sự kiện **“FCAJ Community Day”** là một trải nghiệm rất thực tế và mang tính định hướng cao. Nó không chỉ cung cấp cho tôi các kỹ thuật hiện đại mà còn làm rõ kỳ vọng thực sự của doanh nghiệp. Một số trải nghiệm nổi bật:
+Tham gia sự kiện **“AWS GameDay - 8 Đội Tranh Hùng”** dưới góc độ khán giả là một trải nghiệm cực kỳ kịch tính và mang lại nhiều bài học bất ngờ, vượt xa việc chỉ đọc tài liệu thông thường. Một số trải nghiệm nổi bật:
 
-#### Tiếp cận kiến thức từ đa góc nhìn
-- Được lắng nghe những góc nhìn chân thật từ Senior và nhà tuyển dụng giúp tôi nhận ra rằng thái độ làm việc, sự liêm chính (integrity) và kiến thức nền tảng (foundation) đôi khi còn quyết định sự nghiệp lớn hơn cả các công nghệ bề nổi.
-- Được mổ xẻ trực tiếp nguyên nhân tâm lý khiến bản thân hay trì hoãn, từ đó có phương pháp khắc phục thực tế.
+#### Áp lực từ hàng ghế khán giả
+- Dù không trực tiếp thi đấu, việc theo dõi màn hình đếm ngược và luật chơi "Đúng cộng - Sai trừ" cũng khiến tôi cảm nhận rõ áp lực đè nặng lên các đội. 
+- Chứng kiến những pha lật ngược thế cờ ngoạn mục nhờ sự điềm tĩnh ở những câu hỏi cuối cùng thực sự rất cảm xúc.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Phần trình bày về **BMX Method** thực sự thay đổi cách tôi sử dụng AI. Thay vì chat một cách ngẫu hứng và nhận lại code lỗi bối cảnh (hallucinate), tôi hiểu được tầm quan trọng của việc chia nhỏ dự án (Epic/Story) và giao task cho từng AI Agent cụ thể.
-- Nhìn thấy trực tiếp mô hình kết nối giữa các dịch vụ của AWS Serverless (CloudFront, API Gateway, Lambda, DynamoDB) với Amazon Bedrock.
+#### Học hỏi từ chiến thuật của người xuất sắc
+- Nhìn cách các đội mạnh phản ứng với đề bài dài ngoẵng chỉ trong vài giây giúp tôi nhận ra lỗ hổng trong cách đọc hiểu của bản thân.
+- Hiểu được rằng, việc nhớ tài liệu AWS là chưa đủ; khả năng phán đoán, phân tích logic và tâm lý thi đấu mới là chìa khóa phân định thắng thua.
 
-#### Định hình tư duy cốt lõi
-- Xóa bỏ nỗi lo "AI cướp việc", tôi hiểu rằng AI chỉ đóng vai trò bộ khuếch đại (Amplify). Nếu mình nắm vững cốt lõi, AI sẽ làm mình xuất sắc hơn; ngược lại, nếu hổng kiến thức, AI sẽ khuếch đại cái sai.
-- Bài học về việc luôn đặt câu hỏi **"Tại sao?" (Why)** giúp tôi tránh việc lập trình như một cái máy và tư duy sâu hơn về các quyết định kiến trúc.
+#### Đánh giá lại năng lực bản thân
+- Việc "thi nhẩm" cùng các đội tuyển giúp tôi tự kiểm tra nhanh kiến thức của mình, đặc biệt là ở mảng Networking và Database.
+- Nhận ra rằng mình cần phải thực hành thực tế (Hands-on labs) nhiều hơn thay vì chỉ học lý thuyết suông.
 
 #### Một số hình ảnh khi tham gia sự kiện
 * Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện đã giúp tôi trang bị cả "vũ khí kỹ thuật" (Prompt Engineering, BMX) lẫn "áo giáp tâm lý" (Mindset học tập, Integrity), tạo hành trang vững chắc để tự tin hơn trong kỳ thực tập tại FCAJ Cloud Journey.
+> Nhìn chung, việc quan sát các đội tranh tài tại AWS GameDay là một phương pháp "luyện thi" thực nghiệm vô cùng hiệu quả. Sự kiện đã tiếp thêm cho tôi rất nhiều động lực và định hướng rõ ràng để chinh phục các chứng chỉ AWS trong tương lai.

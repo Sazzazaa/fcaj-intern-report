@@ -27,7 +27,7 @@ During my internship, I participated in 3 events. Each event was a memorable exp
 &emsp;**Role:** Attendee
 
 ### [Event 3](4.3-Event3/)
-&emsp;**Event Name:** FCAJ Community Day (20-06-2026)
+&emsp;**Event Name:** AWS GameDay - The 8-Team Showdown (20-06-2026)
 
 &emsp;**Time:** 09:00 AM, June 20, 2026
 
