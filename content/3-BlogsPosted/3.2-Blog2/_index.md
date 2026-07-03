@@ -1,31 +1,24 @@
 ---
 title: "Blog 2"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# INTERACTIVE PDF TEXT EXTRACTION FROM AMAZON S3: A REAL-TIME SOLUTION WITH MCP
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+This article introduces a solution for building a server (MCP Server) to extract text-based PDF content from Amazon S3 in real-time. Instead of waiting for slow batch jobs, this approach enables an AI Assistant to instantly read, search for clauses, and answer questions from documents.
 
-Key points to know:
+Key takeaways:
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+* **Excellent cost optimization:** Costs only around $2.50/month for 10,000 pages (much cheaper than the ~$23-$28/month of specialized services like Amazon Textract).
+* **Lean 4-component architecture:** Consists of the AI Client, Model Context Protocol (MCP), Custom MCP Server (using boto3, PyPDF2 libraries), and Amazon S3 storage/security system.
+* **Smart operational mechanism:** The AI automatically calls tools via the MCP to extract precisely the required text snippet from S3 using the Object Key, rather than downloading the entire heavy document.
+* **Rapid deployment:** The system can be set up directly on a local machine using Python through a virtual environment and 3 basic library packages.
+* **High practical applicability:** This is a perfect solution for Development or PoC environments when building an internal virtual assistant for instant, on-demand data querying.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+![Blog 2](/images/3-BlogsPosted/blog-2.png)
 
-...Image...
+[Original article link: Build interactive PDF text extraction from Amazon S3](https://aws.amazon.com/vi/blogs/machine-learning/build-interactive-pdf-text-extraction-from-amazon-s3/)
 
-...Link...
-
-...Guide...

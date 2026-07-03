@@ -1,31 +1,26 @@
 ---
 title: "Blog 2"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# TRÍCH XUẤT VĂN BẢN PDF TƯƠNG TÁC TỪ AMAZON S3: GIẢI PHÁP REAL-TIME VỚI MCP
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+Bài viết giới thiệu giải pháp xây dựng một máy chủ (MCP Server) để trích xuất văn bản PDF thuần chữ từ Amazon S3 theo thời gian thực. Thay vì chờ đợi các batch job chậm chạp, cách tiếp cận này giúp AI Assistant có thể đọc, tìm kiếm điều khoản và trả lời câu hỏi từ tài liệu ngay lập tức.
 
 Các điểm chính cần nắm:
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+* **Tối ưu chi phí cực tốt:** Chi phí chỉ rơi vào khoảng $2.50/tháng cho 10.000 trang (rẻ hơn nhiều so với mức ~$23-$28/tháng của các dịch vụ chuyên dụng như Amazon Textract).
+* **Kiến trúc 4 thành phần tinh gọn:** Bao gồm AI Client, giao thức Model Context Protocol (MCP), Custom MCP Server (dùng thư viện boto3, PyPDF2) và hệ thống lưu trữ/bảo mật Amazon S3.
+* **Cơ chế hoạt động thông minh:** AI tự động gọi công cụ thông qua giao thức MCP để trích xuất chính xác đoạn văn bản cần thiết từ S3 bằng Object Key, thay vì tải toàn bộ tài liệu nặng nề về máy.
+* **Triển khai cực kỳ nhanh chóng:** Có thể dựng hệ thống ngay trên máy tính bằng Python thông qua môi trường ảo và 3 gói thư viện cơ bản.
+* **Ứng dụng thực tế cao:** Đây là giải pháp hoàn hảo cho môi trường Development hoặc PoC khi cần xây dựng trợ lý ảo nội bộ truy vấn dữ liệu on-demand tức thì.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+![Blog 2](/images/3-BlogsPosted/blog-2.png)
 
-...Hình ảnh...
 
-...Link...
 
-...Hướng dẫn...
+[Link bài viết gốc: Build interactive PDF text extraction from Amazon S3](https://aws.amazon.com/vi/blogs/machine-learning/build-interactive-pdf-text-extraction-from-amazon-s3/)
+
