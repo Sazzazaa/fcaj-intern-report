@@ -6,237 +6,105 @@ chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
-```
+#### 1. Yêu cầu tài khoản & Region (AWS Account & Region)
+
+Để thực hiện workshop này, bạn cần có một tài khoản AWS đang hoạt động. Khuyến nghị sử dụng tài khoản mới tạo để tận dụng gói **AWS Free Tier** (Miễn phí 12 tháng cho nhiều dịch vụ cốt lõi như EC2, RDS).
+*To complete this workshop, you need an active AWS account. A newly created account is recommended to take advantage of the **AWS Free Tier** (12 months free for core services like EC2, RDS).*
+
+Trong toàn bộ bài Lab này, để giảm thiểu độ trễ (latency) và đảm bảo tính thống nhất, chúng ta sẽ chọn chung một Khu vực (Region):
+*Throughout this Lab, to minimize latency and ensure consistency, we will uniformly use a single Region:*
+*   **Region Name:** `ap-southeast-1`
+*   **Region Location:** Singapore
+
+![AWS Region Selection](/images/5-Workshop/5.2/aws-region.png)
+*(Lưu ý: Chụp màn hình góc trên cùng bên phải của AWS Console, khoanh đỏ hoặc highlight chỗ bạn đang chọn region ap-southeast-1)*
+
+---
+
+#### 2. Phân quyền IAM (IAM Permissions)
+
+Để có thể khởi tạo các dịch vụ (VPC, EC2, RDS, Cognito, Amplify...), tài khoản IAM User mà bạn đang dùng để đăng nhập cần có đủ quyền hạn. Khuyến nghị gán quyền `AdministratorAccess` cho môi trường thực hành, hoặc bạn có thể tạo và gắn IAM inline-policy với mã JSON dưới đây cho User của bạn:
+*To provision services, your logged-in IAM User needs sufficient permissions. It is recommended to attach `AdministratorAccess` for the lab environment, or you can attach the following JSON inline-policy to your User:*
+
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
+            "Sid": "ProjectManagementLabPermissions",
             "Effect": "Allow",
             "Action": [
-                "cloudformation:*",
-                "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
+                "ec2:*",
+                "rds:*",
+                "cognito-idp:*",
+                "s3:*",
+                "apigateway:*",
+                "amplify:*",
+                "lambda:*",
                 "iam:PassRole",
+                "iam:CreateRole",
+                "iam:AttachRolePolicy",
                 "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
+                "budgets:*"
             ],
             "Resource": "*"
         }
     ]
 }
-
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+---
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+#### 3. Thiết lập Cảnh báo chi phí (AWS Budgets - Zero Spend Budget)
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
+Workshop này được thiết kế để hoàn toàn miễn phí ($0) nếu bạn tuân thủ các cấu hình Free Tier. Tuy nhiên, để quản trị rủi ro chi phí điện toán đám mây, chúng ta bắt buộc phải tạo một cảnh báo ngân sách.
+*This workshop is designed to be completely free ($0) if you strictly follow the Free Tier configurations. However, to manage cloud cost risks, we must mandate the creation of a budget alert.*
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+**Step 1:** Từ giao diện AWS Console, tìm kiếm dịch vụ **Billing and Cost Management**.
+*From the AWS Console, search for the **Billing and Cost Management** service.*
 
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
+**Step 2:** Ở thanh điều hướng bên trái, chọn **Budgets** $\rightarrow$ **Create budget**.
+*In the left navigation pane, select **Budgets** $\rightarrow$ **Create budget**.*
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+**Step 3:** Dưới mục *Budget setup*, chọn **Use a template (simplified)**. Trong phần *Templates*, chọn **Zero spend budget**. 
+*Under *Budget setup*, choose **Use a template (simplified)**. In the *Templates* section, select **Zero spend budget**.*
 
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
+**Step 4:** Nhập địa chỉ Email của bạn vào ô **Email recipients** và nhấn **Create budget**. Hệ thống sẽ tự động cảnh báo qua email nếu chi phí dự án bắt đầu phát sinh vượt mức `$0.01`.
+*Enter your email address in the **Email recipients** field and click **Create budget**. The system will automatically email you if the project cost exceeds `$0.01`.*
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+![Zero Spend Budget Config](/images/5-Workshop/5.2/zero-spend-budget.png)
+*(Lưu ý: Chụp màn hình lúc bạn đang điền Email để tạo Budget (Tương đương mốc 07:26:15 trong video))*
 
-+ 2 VPCs đã được tạo
+---
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+#### 4. Chuẩn bị Mã nguồn dự án (Project Source Code)
 
-+ 3 EC2s đã được tạo
+Khác với các bài lab tự động dùng mã CloudFormation, trong workshop này, chúng ta sẽ tự tay triển khai hạ tầng từ đầu (from scratch). Bạn cần đẩy mã nguồn ứng dụng (gồm cả frontend và backend) lên GitHub Repository cá nhân để chuẩn bị cho quá trình Upload và CI/CD sau này.
+*Unlike automated CloudFormation labs, we will provision the infrastructure from scratch. You need to push the application source code (both frontend and backend) to your personal GitHub Repository to prepare for the subsequent Upload and CI/CD processes.*
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+Mở Terminal (hoặc Git Bash) trên máy tính của bạn và chạy lệnh sau để thiết lập:
+*Open your Terminal (or Git Bash) on your computer and run the following commands:*
+
+```bash
+# Clone repository gốc của dự án
+git clone https://github.com/Sazzazaa/project-management-aws
+
+# Di chuyển vào thư mục dự án
+cd project-management
+
+# Cài đặt thư viện cho máy khách và máy chủ
+cd client && npm install
+cd ../server && npm install
+
+# Dọn dẹp .gitignore cũ và đẩy lên Repository mới của riêng bạn
+rm -rf client/.git
+rm -rf server/.git
+git init
+git add .
+git commit -m "Initial commit for AWS Deployment"
+git remote add origin <LINK_GITHUB_REPO_CỦA_BẠN>
+git push -u origin master
+```
+
+![GitHub Repository](/images/5-Workshop/5.2/github-repo.png)
+*(Lưu ý: Chụp màn hình giao diện trang GitHub cá nhân của bạn hiển thị Repository đã chứa đầy đủ 2 thư mục `client` và `server` (Tương đương mốc 07:21:20 trong video))*
