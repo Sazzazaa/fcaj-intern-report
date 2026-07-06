@@ -45,14 +45,18 @@ The project is planned to be executed in 5 phases:
 * **Phase 4: Frontend Deployment & Routing (Week 4):** Push source code to GitHub and connect to AWS Amplify. Configure API Gateway to ensure seamless communication between the Frontend and Backend.
 * **Phase 5: Testing & Handover (Week 5):** Perform End-to-End testing (Create new projects, update tasks via Drag & Drop). Finalize Workshop documentation and prepare Clean-up instructions.
 
-### 6. Budget Estimation
-The project is designed to operate 100% within the limits of the **AWS Free Tier** (applicable to new accounts for the first 12 months).
-* **AWS EC2 (t2.micro / t3.micro):** 750 hours/month free (enough for 1 server running continuously).
-* **AWS RDS (db.t3.micro - Single-AZ):** 750 hours/month free and 20GB of storage.
-* **AWS Cognito:** 50,000 Monthly Active Users (MAUs) free.
-* **AWS Amplify:** 1,000 build minutes and 15GB of served bandwidth/month free.
-* **Amazon S3 & API Gateway:** Negligible costs (close to $0) for typical Lab environment traffic.
-* *Estimated Total Budget:* **$0.00 / month** (Requires setting up an AWS Budgets Alert at $0.10 to actively monitor for any unexpected charges).
+### 6. Budget
+The project is deployed in the **Asia Pacific (Singapore)** region using On-Demand pricing. While a new account can heavily leverage the **AWS Free Tier** to minimize expenses, the breakdown below represents the actual estimated cost without Free Tier (useful for budgeting with AWS Credits):
+
+* **Amazon EC2 (t3.micro):** ~$10.41 / month (Includes 24/7 instance uptime and EBS storage).
+* **Amazon RDS for PostgreSQL (db.t3.micro - Single-AZ):** ~$23.20 / month (Includes database instance and 20GB of storage).
+* **Amazon Cognito:** ~$5.01 / month (User authentication and access management).
+* **AWS Amplify:** ~$1.80 / month (Build minutes and hosting/bandwidth).
+* **Amazon API Gateway:** ~$0.42 / month (REST API gateway routing).
+* **Amazon S3:** ~$0.25 / month (Object storage for images and static files).
+* **AWS Lambda:** $0.00 / month (Fully covered under the Always Free tier limits).
+
+* **Estimated Total Budget:** **~$41.09 / month** (Approx. ~$493.08 / year).
 
 ### 7. Risk Assessment
 *Risk Matrix & Mitigation Strategies:*

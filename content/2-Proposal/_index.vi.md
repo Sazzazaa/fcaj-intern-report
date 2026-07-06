@@ -46,13 +46,17 @@ Dự án dự kiến được triển khai theo lộ trình 5 giai đoạn:
 * **Giai đoạn 5: Kiểm thử & Bàn giao (Tuần 5):** Kiểm thử luồng End-to-End (Tạo dự án mới, cập nhật Task dạng Drag & Drop). Hoàn thiện tài liệu Workshop và chuẩn bị các lệnh Dọn dẹp tài nguyên (Clean-up).
 
 ### 6. Ngân sách (Budget)
-Dự án được thiết kế để hoạt động 100% bên trong giới hạn của **AWS Free Tier** (áp dụng cho tài khoản mới trong 12 tháng đầu). 
-* **AWS EC2 (t2.micro / t3.micro):** Miễn phí 750 giờ/tháng (đủ chạy liên tục 1 máy chủ).
-* **AWS RDS (db.t3.micro - Single-AZ):** Miễn phí 750 giờ/tháng và 20GB lưu trữ.
-* **AWS Cognito:** Miễn phí 50,000 người dùng hoạt động hàng tháng (MAUs).
-* **AWS Amplify:** Miễn phí 1000 phút build và 15GB băng thông phục vụ/tháng.
-* **Amazon S3 & API Gateway:** Chi phí phát sinh cực kỳ thấp (gần như $0) đối với lượng traffic thử nghiệm của môi trường Lab.
-* *Tổng ngân sách dự kiến:* **$0.00 / tháng** (Cần thiết lập AWS Budgets Alert ở mức $0.10 để giám sát nếu có phát sinh vượt mức).
+Dự án được triển khai tại khu vực **Asia Pacific (Singapore)** với mức phí On-Demand (Dùng bao nhiêu trả bấy nhiêu). Mặc dù các tài khoản mới có thể tận dụng **AWS Free Tier** để giảm thiểu tối đa chi phí, bảng dưới đây thể hiện mức chi phí thực tế khi không có Free Tier (rất hữu ích để tính toán khi sử dụng quỹ AWS Credits):
+
+* **Amazon EC2 (t3.micro):** ~$10.41 / tháng (Bao gồm chi phí máy chủ chạy 24/7 và ổ cứng EBS).
+* **Amazon RDS for PostgreSQL (db.t3.micro - Single-AZ):** ~$23.20 / tháng (Bao gồm máy chủ database và 20GB dung lượng lưu trữ).
+* **Amazon Cognito:** ~$5.01 / tháng (Phí quản lý xác thực và phân quyền người dùng).
+* **AWS Amplify:** ~$1.80 / tháng (Chi phí băng thông phục vụ và phút build mã nguồn).
+* **Amazon API Gateway:** ~$0.42 / tháng (Cửa ngõ REST API).
+* **Amazon S3:** ~$0.25 / tháng (Lưu trữ hình ảnh và tệp tĩnh).
+* **AWS Lambda:** $0.00 / tháng (Luôn miễn phí do lượng request nằm trong giới hạn Always Free).
+
+* **Tổng ngân sách dự kiến:** **~$41.09 / tháng** (Tương đương ~$493.08 / năm).
 
 ### 7. Rủi ro (Risk Assessment)
 *Ma trận rủi ro & Cách giảm thiểu:*
