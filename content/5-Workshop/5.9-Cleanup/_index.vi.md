@@ -1,6 +1,6 @@
 ---
 title : "Dọn dẹp tài nguyên"
-date : 2026-07-07 
+date : 2026-07-07
 weight : 9
 chapter : false
 pre : " <b> 5.9. </b> "
@@ -8,30 +8,86 @@ pre : " <b> 5.9. </b> "
 
 #### Dọn dẹp tài nguyên
 
-Xin chúc mừng bạn đã hoàn thành xong lab này!
-Trong lab này, bạn đã học về các mô hình kiến trúc để truy cập Amazon S3 mà không sử dụng Public Internet.
+Sau khi hoàn thành workshop triển khai hệ thống Project Management trên AWS, bước dọn dẹp tài nguyên là cần thiết để tránh phát sinh chi phí không mong muốn. Việc xóa nên được thực hiện theo từng nhóm dịch vụ, đi từ lớp ứng dụng bên ngoài vào các tài nguyên hạ tầng bên trong, để hạn chế lỗi phụ thuộc trong quá trình thao tác.
 
-+ Bằng cách tạo Gateway endpoint, bạn đã cho phép giao tiếp trực tiếp giữa các tài nguyên EC2 và Amazon S3, mà không đi qua Internet Gateway.
-Bằng cách tạo Interface endpoint, bạn đã mở rộng kết nối S3 đến các tài nguyên chạy trên trung tâm dữ liệu trên chỗ của bạn thông qua AWS Site-to-Site VPN hoặc Direct Connect.
+#### Thứ tự thực hiện khuyến nghị
 
-#### Dọn dẹp
-1. Điều hướng đến Hosted Zones trên phía trái của bảng điều khiển Route 53. Nhấp vào tên của  s3.us-east-1.amazonaws.com zone. Nhấp vào Delete và xác nhận việc xóa bằng cách nhập từ khóa "delete".
+1. **Gỡ frontend trên AWS Amplify**
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/delete-zone.png)
+   Trước tiên, mở **AWS Amplify** và kiểm tra ứng dụng đã được deploy. Nếu không còn nhu cầu giữ môi trường demo, có thể xóa branch đang sử dụng hoặc xóa toàn bộ app hosting.
 
-2. Disassociate Route 53 Resolver Rule - myS3Rule from "VPC Onprem" and Delete it. 
+2. **Xóa cấu hình xác thực trên Amazon Cognito**
 
-![hosted zone](/images/5-Workshop/5.6-Cleanup/vpc.png)
+   Tiếp theo, vào **Amazon Cognito** để rà soát các thành phần sau:
 
-4.Mở console của CloudFormation và xóa hai stack CloudFormation mà bạn đã tạo cho bài thực hành này:
-+ PLOnpremSetup
-+ PLCloudSetup
+   - User Pool đã tạo cho project
+   - App Client đi kèm
+   - Các user test không còn cần dùng
 
-![delete stack](/images/5-Workshop/5.6-Cleanup/delete-stack.png)
+   Nếu hệ thống không còn sử dụng lại, nên xóa toàn bộ User Pool để tránh giữ các cấu hình xác thực không cần thiết.
 
-5. Xóa các S3 bucket
+3. **Xóa API trên Amazon API Gateway**
 
-+ Mở bảng điều khiển S3
-+ Chọn bucket chúng ta đã tạo cho lab, nhấp chuột và xác nhận là empty. Nhấp Delete và xác nhận delete.
-+ 
-![delete s3](/images/5-Workshop/5.6-Cleanup/delete-s3.png)
+   Sau phần xác thực, vào **API Gateway** và tiến hành xóa:
+
+   - HTTP API hoặc REST API đã tạo
+   - Stage deploy liên quan
+   - Authorizer nếu được tạo riêng cho bài lab
+
+4. **Xóa Lambda Trigger**
+
+   Nếu trong quá trình triển khai có sử dụng Lambda để xử lý post-confirmation hoặc các trigger liên quan đến Cognito, cần:
+
+   - Gỡ trigger ra khỏi User Pool
+   - Xóa function Lambda nếu không dùng nữa
+
+5. **Dừng và xóa EC2 backend**
+
+   Tại **EC2 Console**, thực hiện lần lượt các bước sau:
+
+   - Stop instance để kiểm tra lần cuối
+   - Terminate instance backend nếu không cần giữ
+   - Xóa Elastic IP nếu có gán riêng
+   - Xóa key pair trên AWS nếu không còn sử dụng
+
+6. **Xóa cơ sở dữ liệu Amazon RDS**
+
+   Đối với **Amazon RDS**, cần cân nhắc trước khi xóa để tránh mất dữ liệu cần lưu trữ. Tại **RDS Console**, có thể chọn một trong hai hướng:
+
+   - **Giữ final snapshot** nếu muốn sao lưu dữ liệu trước khi kết thúc
+   - **Không giữ snapshot** nếu đây chỉ là môi trường lab và không còn nhu cầu phục hồi
+
+   Sau khi xác định phương án phù hợp, tiến hành xóa database instance.
+
+7. **Xóa S3 bucket lưu hình ảnh**
+
+   Tại **Amazon S3**, thực hiện dọn dẹp theo thứ tự:
+
+   - Xóa toàn bộ object trong bucket
+   - Xác nhận bucket rỗng
+   - Xóa bucket chứa ảnh hoặc static assets của project
+
+8. **Xóa Security Group và tài nguyên mạng phụ trợ**
+
+   Sau khi EC2 và RDS đã được xóa, có thể tiếp tục xử lý các tài nguyên mạng đi kèm:
+
+   - Security Group dùng riêng cho EC2
+   - Security Group dùng riêng cho RDS
+   - DB subnet group nếu tạo riêng
+
+9. **Xóa subnet, route table, internet gateway và VPC**
+
+   Nếu VPC này chỉ được tạo riêng cho workshop, nên xóa theo đúng thứ tự sau:
+
+   - Subnet
+   - Route table tùy chỉnh
+   - Internet Gateway (detach trước, rồi delete)
+   - VPC
+
+#### Lưu ý cuối cùng
+
+Trước khi xóa hoàn toàn tài nguyên, cần kiểm tra lại rằng các nội dung sau đã được lưu đầy đủ:
+
+- Source code cuối cùng
+- Ảnh chụp màn hình để viết báo cáo
+- Link demo hoặc thông tin cấu hình quan trọng nếu cần đối chiếu sau này
