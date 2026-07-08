@@ -1,72 +1,66 @@
 ---
-title : "Install Environment"
-date : 2024-01-01 
+title : "Cài đặt môi trường và chuẩn bị backend"
+date : 2026-07-06
 weight : 2
 chapter : false
 pre : " <b> 5.4.2. </b> "
 ---
 
-### Cài đặt môi trường và tải mã nguồn
+### Kết nối EC2, cài Node.js và tải mã nguồn
 
-Sau khi máy chủ đã chạy, chúng ta cần truy cập vào nó để cài đặt Node.js và lấy mã nguồn dự án từ GitHub.
+Sau khi instance đã chạy, chúng ta SSH vào máy để cài môi trường thực thi và clone mã nguồn backend.
 
-**Step 1: Cài đặt Node.js, NPM và Git**
-Trên Amazon Linux, chúng ta sử dụng trình quản lý gói `yum`. Chạy các lệnh sau để cập nhật hệ thống và cài đặt Node.js cùng với Git:
+#### 1. SSH vào EC2
+
+Từ máy local, sử dụng file `.pem` đã tải để kết nối:
 
 ```bash
-# Chuyển sang quyền root (giống trong video)
-sudo su -
-
-# Tải và cài đặt NVM (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-# Kích hoạt NVM
-. ~/.nvm/nvm.sh
-
-# Cài đặt Node.js phiên bản 20 (hoặc bản bạn dùng local)
-nvm install 20
-
-# Cài đặt Git (Bắt buộc để clone code)
-yum install git -y
-
-# Kiểm tra lại phiên bản
-node -v
-npm -v
-git --version
+ssh -i "C:\Users\admin\Downloads\pm-key.pem" ec2-user@<public-dns-or-public-ip>
 ```
+
+Sau khi vào được máy, nạp lại shell và chọn phiên bản Node phù hợp:
+
+```bash
+source ~/.bashrc
+nvm use node
+```
+
+![SSH and install environment](/images/5-Workshop/5.4-AWS-EC2/z8014660664709_d852d8aca4a9c0b88cf677c434a0945a.jpg)
+
+#### 2. Cài dependency và clone repo
+
+```bash
+sudo yum update -y
+sudo yum install git -y
+
+git clone https://github.com/Sazzazaa/project-management-aws.git
+cd ~/project-management-aws/server
+npm install
+```
+
+Nếu bạn chưa cài Node.js trên EC2, có thể tham khảo lại các bước cài NVM/Node ở hình minh họa bên dưới:
 
 ![Install Nodejs](/images/5-Workshop/5.4-AWS-EC2/install-nodejs.png)
-![Install Nodejs](/images/5-Workshop/5.4-AWS-EC2/install-nodejs1.png)
+![Install Nodejs 2](/images/5-Workshop/5.4-AWS-EC2/install-nodejs1.png)
 
-**Step 2: Tải mã nguồn dự án**
-Chúng ta sẽ sử dụng Git để lấy mã nguồn Backend về máy chủ.
+#### 3. Chuẩn bị file `.env`
 
-```bash
-# Clone dự án từ Github
-git clone [https://github.com/Sazzazaa/project-management-aws.git](https://github.com/Sazzazaa/project-management-aws.git)
-
-# Di chuyển vào thư mục dự án
-cd project-management-aws/server
-
-# Cài đặt các thư viện phụ thuộc
-npm install
-# Chạy thử để check
-npm run dev
-```
-
-![Clone Repo](/images/5-Workshop/5.4-AWS-EC2/clone-repo.png)
-
-
-**Step 3: Chuẩn bị file biến môi trường**
-Ứng dụng Backend cần file `.env` để hoạt động. Chúng ta sẽ tạo file này dựa trên file mẫu.
+Ở giai đoạn đầu, bạn có thể tạo file `.env` trước với `PORT`. Sau khi hoàn tất phần RDS ở bước 5.5, quay lại bổ sung `DATABASE_URL`.
 
 ```bash
-# Tạo file môi trường
-echo "PORT=80" > .env
+cat > .env <<EOF
+PORT=8000
+DATABASE_URL="postgresql://<db-username>:<db-password>@<rds-endpoint>:5432/project_management_aws?schema=public"
+EOF
 ```
+
 ![Config Env](/images/5-Workshop/5.4-AWS-EC2/config-env0.png)
+![Config Env 2](/images/5-Workshop/5.4-AWS-EC2/config-env.png)
 
-![Config Env](/images/5-Workshop/5.4-AWS-EC2/config-env.png)
+#### 4. Chuẩn bị cho bước tiếp theo
 
+Đến đây, EC2 đã sẵn sàng nhận kết nối tới cơ sở dữ liệu. Ở phần **5.5 AWS RDS**, chúng ta sẽ:
 
-👉 **Bước tiếp theo:** Chúng ta sẽ chuyển sang phần **5.5. AWS RDS** để thiết lập Database, sau đó quay lại hoàn thiện file `.env` và khởi chạy Backend.
+* tạo PostgreSQL trên RDS,
+* mở rule kết nối giữa `pm-ec2-sg` và `pm-rds-sg`,
+* migrate và seed dữ liệu cho backend.

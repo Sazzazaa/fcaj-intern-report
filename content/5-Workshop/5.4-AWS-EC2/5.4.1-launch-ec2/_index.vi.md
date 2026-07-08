@@ -1,51 +1,68 @@
 ---
-title : "Launch EC2"
-date : 2024-01-01 
+title : "Khởi tạo EC2 Instance"
+date : 2026-07-04
 weight : 1
 chapter : false
 pre : " <b> 5.4.1. </b> "
 ---
 
-### Khởi tạo máy chủ ảo
+### Khởi tạo máy chủ EC2 cho backend
 
-Bước này hướng dẫn cách tạo một máy chủ EC2, gắn nó vào mạng VPC đã tạo ở bước 5.3 và cấu hình tường lửa (Security Group) đảm bảo nguyên tắc bảo mật.
+Ở bước này, chúng ta tạo một máy chủ EC2 để chạy backend Node.js. Hãy sử dụng **cùng Region với VPC và RDS** đã tạo trước đó. Trong kết quả thực tế của workshop này, region được dùng là **us-east-2 (Ohio)**.
 
-**Step 1: Truy cập EC2 Dashboard**
+#### 1. Truy cập dịch vụ EC2
+
 1. Đăng nhập vào AWS Management Console.
-2. Tìm kiếm **EC2** trên thanh tìm kiếm và chọn dịch vụ EC2.
-3. Nhấp vào nút **Launch instance**.
+2. Tìm kiếm `EC2` trên thanh Search.
+3. Chọn **Instances** và nhấn **Launch instance**.
 
 ![Access EC2](/images/5-Workshop/5.4-AWS-EC2/access-ec2.png)
 
-**Step 2: Cấu hình cơ bản**
-1. **Name:** Nhập tên cho máy chủ, ví dụ: `pm_ec2-backend`.
-2. **Application and OS Images (Amazon Machine Image):** Chọn **Amazon Linux**, version *Amazon Linux 2023 AMI* (hoặc Amazon Linux 2).
-3. **Instance type:** Chọn **t2.micro**.
+#### 2. Cấu hình cơ bản
+
+Điền các thông tin chính:
+
+* **Name**: `project-management-api` hoặc tên tương tự.
+* **Amazon Machine Image**: Amazon Linux 2023.
+* **Instance type**: `t2.micro` hoặc `t3.micro`.
 
 ![Config EC2 OS](/images/5-Workshop/5.4-AWS-EC2/config-os.png)
 
-**Step 3: Cấu hình Key pair**
+#### 3. Tạo Key Pair
+
 1. Ở mục **Key pair (login)**, chọn **Create new key pair**.
-2. Nhập tên Key pair name (ví dụ: `fcj-workshop-key`).
-3. Key pair type: **RSA**. Private key file format: **.pem** (nếu dùng Mac/Linux) hoặc **.ppk** (nếu dùng Windows/PuTTY).
-4. Nhấp **Create key pair** và lưu file này ở nơi an toàn trên máy tính của bạn.
+2. Đặt tên, ví dụ: `pm-key`.
+3. Chọn định dạng `.pem`.
+4. Tải file key về máy để dùng khi SSH vào EC2.
 
 ![Create Key Pair](/images/5-Workshop/5.4-AWS-EC2/create-key-pair.png)
 
-**Step 4: Cấu hình Mạng & Bảo mật**
-1. Ở mục **Network settings**, nhấp vào **Edit**.
-2. **VPC:** Chọn VPC mà bạn đã tạo ở phần 5.3.
-3. **Subnet:** Chọn một **Public Subnet** để máy chủ có thể truy cập được từ Internet (Cần thiết cho quá trình cài đặt).
-4. **Auto-assign public IP:** Đổi thành **Enable**.
-5. **Firewall (security groups):** Chọn **Create security group**.
-    * **Security group name:** `pm_ec2-sg`
+#### 4. Cấu hình mạng và Security Group
+
+1. Trong **Network settings**, nhấn **Edit**.
+2. Chọn đúng **VPC** đã tạo ở bước 5.3.
+3. Chọn **Public Subnet** cho EC2.
+4. Bật **Auto-assign public IP**.
+5. Tạo Security Group `pm-ec2-sg`.
+
+Các rule tối thiểu nên có:
+
+* **SSH (22)**: chỉ mở cho IP của bạn.
+* **Custom TCP (8000)**: cho backend API.
+* **HTTP (80)**: nếu cần test nhanh hoặc reverse proxy.
 
 ![Config Security Group](/images/5-Workshop/5.4-AWS-EC2/config-sg.png)
 
+#### 5. Launch instance
 
-**Step 5: Khởi chạy**
-1. Phần **Configure storage** giữ nguyên mặc định là 8GB gp3.
-2. Kiểm tra lại thông tin ở khung **Summary** bên phải.
-3. Nhấp **Launch instance**. Chờ vài phút để trạng thái của máy chủ chuyển sang **Running**.
+1. Kiểm tra lại phần **Summary**.
+2. Nhấn **Launch instance**.
+3. Chờ vài phút để instance chuyển sang trạng thái **Running**.
 
 ![Launch Summary](/images/5-Workshop/5.4-AWS-EC2/launch-summary.png)
+
+#### 6. Kết quả thực tế
+
+Sau khi tạo thành công, AWS sẽ hiển thị mã instance và thông báo khởi tạo hoàn tất.
+
+![EC2 launch success](/images/5-Workshop/5.4-AWS-EC2/z8007993502305_c977416dc91cb6dd7fa401b0e8741e0e.jpg)

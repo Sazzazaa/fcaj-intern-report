@@ -1,6 +1,6 @@
 ---
 title : "Triển khai Backend (AWS EC2)"
-date : 2024-01-01 
+date : 2026-07-04
 weight : 4
 chapter : false
 pre : " <b> 5.4. </b> "
@@ -8,17 +8,17 @@ pre : " <b> 5.4. </b> "
 
 ### Triển khai Backend trên AWS EC2
 
-Trong dự án này, hệ thống Backend (Node.js/Express) đóng vai trò xử lý logic nghiệp vụ và giao tiếp với cơ sở dữ liệu. Chúng ta sẽ sử dụng **Amazon Elastic Compute Cloud (Amazon EC2)** để làm máy chủ chạy ứng dụng này.
+Trong phần này, chúng ta triển khai backend Node.js/Express lên **Amazon EC2** để ứng dụng có thể phục vụ API cho frontend. EC2 được đặt trong public subnet để dễ truy cập quản trị, còn database vẫn nằm ở private subnet nhằm đảm bảo an toàn dữ liệu.
 
-![EC2 Architecture](/images/5-Workshop/5.4-AWS-EC2/ec2-architecture.png)
+EC2 phù hợp với bài toán này vì:
 
-#### Lý do lựa chọn dịch vụ
-*   **Tính linh hoạt:** EC2 cung cấp quyền kiểm soát hoàn toàn (root access) đối với môi trường máy chủ, cho phép dễ dàng cài đặt Node.js, các thư viện cần thiết và cấu hình hệ thống theo đúng yêu cầu của framework.
-*   **Chi phí tối ưu:** Bằng cách sử dụng instance type `t2.micro` hoặc `t3.micro`, chúng ta có thể tận dụng AWS Free Tier, giúp tiết kiệm chi phí tối đa trong quá trình phát triển và làm workshop.
-*   **Khả năng tích hợp:** Dễ dàng nằm gọn trong kiến trúc VPC đã tạo, giao tiếp nội bộ an toàn với RDS và có thể đặt sau API Gateway.
+* **Toàn quyền cấu hình môi trường**: dễ cài Node.js, Prisma, PM2 và các thư viện phụ thuộc.
+* **Chi phí thấp**: có thể dùng `t2.micro` hoặc `t3.micro` trong phạm vi Free Tier.
+* **Dễ tích hợp**: backend trên EC2 có thể kết nối nội bộ tới RDS và được đặt sau API Gateway để cung cấp HTTPS cho frontend.
 
-#### Bố cục phần này
-1. **Launch EC2 Instance:** Khởi tạo máy chủ ảo với các cấu hình mạng và bảo mật (Security Group) phù hợp.
-2. **Install Environment:** Truy cập vào máy chủ, cài đặt môi trường Node.js và tải mã nguồn Backend.
+![EC2 launched successfully](/images/5-Workshop/5.4-AWS-EC2/z8007993502305_c977416dc91cb6dd7fa401b0e8741e0e.jpg)
 
-*(Lưu ý: Theo phương pháp triển khai tăng dần (Iterative), sau khi tải mã nguồn, Backend sẽ chưa thể chạy ngay lập tức vì chúng ta cần khởi tạo Cơ sở dữ liệu RDS ở bước tiếp theo).*
+#### Nội dung
+
+1. [Khởi tạo EC2 Instance](5.4.1-launch-ec2/)
+2. [Cài đặt môi trường và chuẩn bị backend](5.4.2-install-env/)

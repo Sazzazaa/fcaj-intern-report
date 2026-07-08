@@ -1,11 +1,14 @@
 ---
-title : "Hosting Frontend & Định tuyến (Amplify & API Gateway)"
-date : 2024-01-01 
+title : "Hosting Frontend và định tuyến (Amplify & API Gateway)"
+date : 2026-07-06
 weight : 6
 chapter : false
 pre : " <b> 5.6. </b> "
 ---
+
+Phần này đưa frontend Next.js lên Internet bằng **AWS Amplify** và đặt **API Gateway** trước backend EC2 để cung cấp endpoint HTTPS công khai cho trình duyệt.
+
 #### Nội dung
 
-- [Triển khai Frontend lên Amplify](5.6.1-deploy-amplify/)
-- [Cấu hình HTTPS với API Gateway](5.6.2-api-gateway/)
+1. [Triển khai frontend lên Amplify](5.6.1-deploy-amplify/)
+2. [Cấu hình HTTPS với API Gateway](5.6.2-api-gateway/)
