@@ -1,43 +1,66 @@
 ---
-title : "Install Node.js & PM2 via SSH"
-date : 2024-01-01
+title : "Install the Environment and Prepare the Backend"
+date : 2026-07-06
 weight : 2
 chapter : false
 pre : " <b> 5.4.2. </b> "
 ---
 
-In this section you will create and test an S3 interface endpoint using the simulated on-premises environment deployed as part of this workshop.
+### Connect to EC2, install Node.js, and clone the repository
 
-1. Return to the Amazon VPC menu. In the navigation pane, choose Endpoints, then click Create Endpoint.
+After the EC2 instance is running, connect to it and install the required runtime environment for the backend.
 
-2. In Create endpoint console:
-+ Name the interface endpoint
-+ In Service category, choose **aws services** 
+#### 1. SSH into the EC2 instance
 
-![name](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint1.png)
+From your local machine:
 
-3.  In the Search box, type S3 and press Enter. Select the endpoint named com.amazonaws.us-east-1.s3. Ensure that the Type column indicates Interface.
+```bash
+ssh -i "C:\Users\admin\Downloads\pm-key.pem" ec2-user@<public-dns-or-public-ip>
+```
 
-![service](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint2.png)
+Then load the shell profile and use the correct Node version:
 
-4. For VPC, select VPC Cloud from the drop-down.
-{{% notice warning %}}
-Make sure to choose "VPC Cloud" and not "VPC On-prem"
-{{% /notice %}}
-+ Expand **Additional settings** and ensure that Enable DNS name is *not* selected (we will use this in the next part of the workshop)
+```bash
+source ~/.bashrc
+nvm use node
+```
 
-![vpc](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint3.png)
+![SSH and install environment](/images/5-Workshop/5.4-AWS-EC2/z8014660664709_d852d8aca4a9c0b88cf677c434a0945a.jpg)
 
-5. Select 2 subnets in the following AZs: us-east-1a and us-east-1b
+#### 2. Install dependencies and clone the repo
 
-![subnets](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint4.png)
+```bash
+sudo yum update -y
+sudo yum install git -y
 
-6. For Security group, choose SGforS3Endpoint:
+git clone https://github.com/Sazzazaa/project-management-aws.git
+cd ~/project-management-aws/server
+npm install
+```
 
-![sg](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint5.png)
+If Node.js is not installed yet, use the NVM and Node setup steps shown in the screenshots below:
 
-7. Keep the default policy - full access and click Create endpoint
+![Install Nodejs](/images/5-Workshop/5.4-AWS-EC2/install-nodejs.png)
+![Install Nodejs 2](/images/5-Workshop/5.4-AWS-EC2/install-nodejs1.png)
 
-![success](/images/5-Workshop/5.4-S3-onprem/s3-interface-endpoint-success.png)
+#### 3. Prepare the `.env` file
 
-Congratulation on successfully creating S3 interface endpoint. In the next step, we will test the interface endpoint.
+At the beginning, you can create the file with `PORT`. After finishing the RDS section, come back and add `DATABASE_URL`.
+
+```bash
+cat > .env <<EOF
+PORT=8000
+DATABASE_URL="postgresql://<db-username>:<db-password>@<rds-endpoint>:5432/project_management_aws?schema=public"
+EOF
+```
+
+![Config Env](/images/5-Workshop/5.4-AWS-EC2/config-env0.png)
+![Config Env 2](/images/5-Workshop/5.4-AWS-EC2/config-env.png)
+
+#### 4. Next step
+
+At this point, EC2 is ready to connect to the database. In section **5.5 AWS RDS**, we will:
+
+* create the PostgreSQL database on RDS
+* configure the Security Group rule between `pm-ec2-sg` and `pm-rds-sg`
+* run Prisma generate, migrations, and seed data from EC2

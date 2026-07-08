@@ -1,57 +1,68 @@
 ---
-title : "Launch EC2 Instance & Security Group"
-date : 2024-01-01
+title : "Launch EC2 Instance"
+date : 2026-07-04
 weight : 1
 chapter : false
-pre : " <b> 5.4.1 </b> "
+pre : " <b> 5.4.1. </b> "
 ---
 
-To prepare for this part of the workshop you will need to:
-+ Deploying a CloudFormation stack 
-+ Modifying a VPC route table. 
+### Create an EC2 instance for the backend
 
-These components work together to simulate on-premises DNS forwarding and name resolution.
+In this step, we create an EC2 instance to run the Node.js backend. Use the **same Region as the VPC and RDS resources** created earlier. In this workshop, the screenshots use **us-east-2 (Ohio)**.
 
-#### Deploy the CloudFormation stack
+#### 1. Open the EC2 Console
 
-The CloudFormation template will create additional services to support an on-premises simulation:
-+ One Route 53 Private Hosted Zone that hosts Alias records for the PrivateLink S3 endpoint
-+ One Route 53 Inbound Resolver endpoint that enables "VPC Cloud" to resolve inbound DNS resolution requests to the Private Hosted Zone
-+ One Route 53 Outbound Resolver endpoint that enables "VPC On-prem" to forward DNS requests for S3 to "VPC Cloud"
+1. Sign in to the AWS Management Console.
+2. Search for `EC2`.
+3. Open **Instances** and click **Launch instance**.
 
-![route 53 diagram](/images/5-Workshop/5.4-S3-onprem/route53.png)
+![Access EC2](/images/5-Workshop/5.4-AWS-EC2/access-ec2.png)
 
-1. Click the following link to open the [AWS CloudFormation console](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.amazonaws.com/reinvent-endpoints-builders-session/R53CF.yaml&stackName=PLOnpremSetup). The required template will be pre-loaded into the menu. Accept all default and click Create stack.
+#### 2. Configure the instance
 
-![Create stack](/images/5-Workshop/5.4-S3-onprem/create-stack.png)
+Use a configuration similar to:
 
-![Button](/images/5-Workshop/5.4-S3-onprem/create-stack-button.png)
+* **Name**: `project-management-api`
+* **Amazon Machine Image**: Amazon Linux 2023
+* **Instance type**: `t2.micro` or `t3.micro`
 
-It may take a few minutes for stack deployment to complete. You can continue with the next step without waiting for the deployemnt to finish.
+![Config EC2 OS](/images/5-Workshop/5.4-AWS-EC2/config-os.png)
 
-#### Update on-premise private route table
+#### 3. Create a key pair
 
-This workshop uses a strongSwan VPN running on an EC2 instance to simulate connectivty between an on-premises datacenter and the AWS cloud. Most of the required components are provisioned before your start. To finalize the VPN configuration, you will modify the "VPC On-prem" routing table to direct traffic destined for the cloud to the strongSwan VPN instance.
+1. In **Key pair (login)**, choose **Create new key pair**.
+2. Enter a name such as `pm-key`.
+3. Choose the `.pem` format.
+4. Download the file and keep it in a safe place for SSH access.
 
-1. Open the Amazon EC2 console 
+![Create Key Pair](/images/5-Workshop/5.4-AWS-EC2/create-key-pair.png)
 
-2. Select the instance named infra-vpngw-test. From the Details tab, copy the Instance ID and paste this into your text editor
+#### 4. Configure networking and the Security Group
 
-![ec2 id](/images/5-Workshop/5.4-S3-onprem/ec2-onprem-id.png)
+1. In **Network settings**, click **Edit**.
+2. Select the VPC created in section 5.3.
+3. Select a **public subnet**.
+4. Enable **Auto-assign public IP**.
+5. Create a Security Group named `pm-ec2-sg`.
 
-3. Navigate to the VPC menu by using the Search box at the top of the browser window.
+Recommended rules:
 
-4. Click on Route Tables, select the RT Private On-prem route table, select the Routes tab, and click Edit Routes.
+* **SSH (22)**: allow only your IP
+* **Custom TCP (8000)**: for the backend API
+* **HTTP (80)**: optional for quick testing or reverse proxy setup
 
-![rt](/images/5-Workshop/5.4-S3-onprem/rt.png)
+![Config Security Group](/images/5-Workshop/5.4-AWS-EC2/config-sg.png)
 
-5. Click Add route.
-+ Destination: your Cloud VPC cidr range
-+ Target: ID of your infra-vpngw-test instance (you saved in your editor at step 1)
+#### 5. Launch the instance
 
-![add route](/images/5-Workshop/5.4-S3-onprem/add-route.png)
+1. Review the **Summary** section.
+2. Click **Launch instance**.
+3. Wait for the instance to reach **Running** status.
 
-6. Click Save changes
+![Launch Summary](/images/5-Workshop/5.4-AWS-EC2/launch-summary.png)
 
+#### 6. Actual result
 
+After the instance is created successfully, AWS displays the new instance ID and a success message.
 
+![EC2 launch success](/images/5-Workshop/5.4-AWS-EC2/z8007993502305_c977416dc91cb6dd7fa401b0e8741e0e.jpg)

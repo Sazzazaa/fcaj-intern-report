@@ -1,40 +1,75 @@
 ---
-title : "Initialize VPC & Subnets"
-date : 2024-01-01
+title : "Create the VPC and Subnets"
+date : 2026-07-04
 weight : 1
 chapter : false
 pre : " <b> 5.3.1. </b> "
 ---
 
-1. Open the [Amazon VPC console](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Home:)
-2. In the navigation pane, choose **Endpoints**, then click **Create Endpoint**:
+#### 1. Create the Virtual Private Cloud (VPC)
 
-{{% notice note %}}
-You will see **6 existing VPC endpoints** that support **AWS Systems Manager (SSM)**. These endpoints were deployed automatically by the **CloudFormation Templates** for this workshop.
-{{% /notice %}}
+**Step 1:** Sign in to the AWS Management Console. Search for `VPC` and open the VPC service. Make sure you are working in the correct Region for the workshop.
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/endpoints.png)
+![Select VPC](/images/5-Workshop/5.3-AWS-VPC/select-vpc.png)
 
-3. In the Create endpoint console:
-+ Specify name of the endpoint: ```s3-gwe```
-+ In service category, choose **AWS services**
+**Step 2:** In the left navigation pane, choose **Your VPCs**, then click **Create VPC**.
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/create-s3-gwe1.png)
+![Create VPC](/images/5-Workshop/5.3-AWS-VPC/create-vpc.png)
 
-+ In **Services**, type ```s3``` in the search box and choose the service with type **gateway**
+**Step 3:** In the configuration screen, enter values similar to the following:
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/services.png)
+* **Resources to create:** `VPC and more` or the workflow used in your AWS console
+* **Name tag:** `pm-vpc`
+* **IPv4 CIDR block:** `10.0.0.0/16`
 
-+ For VPC, select **VPC Cloud** from the drop-down.
-+ For **Configure route tables**, select the route table that is already associated with **two subnets** (note: this is not the main route table for the VPC, but a second route table created by CloudFormation).
+![Select create VPC](/images/5-Workshop/5.3-AWS-VPC/select-create-vpc.png)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/vpc.png)
+---
 
-+ **For Policy**, leave the default option, **Full Access**, to allow full access to the service. You will deploy **a VPC endpoint policy** in a later lab module to demonstrate restricting access to **S3 buckets** based on policies.
+#### 2. Create the subnets
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/policy.png)
+The project needs 3 subnets:
 
-+ Do not add a tag to the VPC endpoint at this time.
-+ Click **Create endpoint**, then click x after receiving a successful creation message.
+* 1 **public subnet** for EC2
+* 2 **private subnets** in different Availability Zones for RDS
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/complete.png)
+**Step 1:** Return to the left navigation pane, choose **Subnets**, then click **Create subnet**.
+
+![Create subnet button](/images/5-Workshop/5.3-AWS-VPC/create-subnet-button.png)
+
+**Step 2:** In **VPC ID**, select the `pm-vpc` you just created.
+
+**Step 3:** Create the following subnets:
+
+* **Subnet 1 (Public)**
+  * **Subnet name:** `pm_public-subnet-1`
+  * **Availability Zone:** first AZ in your Region
+  * **IPv4 CIDR block:** `10.0.0.0/24`
+
+* **Subnet 2 (Private 1)**
+  * **Subnet name:** `pm_private-subnet-1`
+  * **Availability Zone:** same AZ as the public subnet
+  * **IPv4 CIDR block:** `10.0.1.0/24`
+
+* **Subnet 3 (Private 2)**
+  * **Subnet name:** `pm_private-subnet-2`
+  * **Availability Zone:** a different AZ
+  * **IPv4 CIDR block:** `10.0.2.0/24`
+
+![Create subnet](/images/5-Workshop/5.3-AWS-VPC/create-subnet.png)
+
+**Step 4:** Scroll to the bottom and click **Create subnet**.
+
+After the workflow completes, AWS shows a confirmation screen indicating that the VPC, subnets, route tables, and internet gateway were created successfully.
+
+![Create VPC workflow success](/images/5-Workshop/5.3-AWS-VPC/z8007889978504_abaf388742a623b682b46742d309f93a.jpg)
+
+---
+
+#### 3. Test and validation
+
+* Open the **Subnets** page again.
+* Filter by `VPC = pm-vpc`.
+* **Expected result:** 3 subnets are displayed in **Available** status with the expected CIDR ranges and Availability Zones.
+
+![3 Subnets](/images/5-Workshop/5.3-AWS-VPC/3-subnets.png)

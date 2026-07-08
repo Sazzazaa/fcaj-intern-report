@@ -8,7 +8,7 @@ pre : " <b> 5.3.1. </b> "
 
 #### 1. Khởi tạo Virtual Private Cloud (VPC)
 
-**Step 1:** Đăng nhập vào AWS Management Console. Trên thanh tìm kiếm, gõ `VPC` và truy cập vào dịch vụ VPC. Đảm bảo bạn đang ở Region **ap-southeast-1 (Singapore)**.
+**Step 1:** Đăng nhập vào AWS Management Console. Trên thanh tìm kiếm, gõ `VPC` và truy cập vào dịch vụ VPC. Đảm bảo bạn đang ở Region đúng cho Workshop.
 ![Select VPC](/images/5-Workshop/5.3-AWS-VPC/select-vpc.png)
 
 **Step 2:** Trong thanh điều hướng bên trái, chọn **Your VPCs**, sau đó nhấn nút **Create VPC**.
