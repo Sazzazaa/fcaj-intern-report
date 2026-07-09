@@ -1,6 +1,6 @@
 ---
 title: "Proposal"
-date: 2026-06-30
+date: 2026-07-08
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -25,8 +25,7 @@ The **Project Management Dashboard** is a comprehensive full-stack web applicati
 ### 4. Solution Architecture
 The platform adopts a 3-Tier Architecture (Frontend - Backend - Database) distributed across specialized AWS services, residing inside a Virtual Private Cloud (VPC) with clear Subnet segmentation.
 
-![Project Architecture](/images/2-Proposal/aws-architecture.png)
-*(Note: Insert your AWS architecture diagram here)*
+![Project Architecture](/images/5-Workshop/5.1-Workshop-overview/diagram1.jpg)
 
 *Component Design & AWS Services Used:*
 - **AWS VPC (Virtual Private Cloud):** Provision 1 Public Subnet (for EC2) to connect to the Internet via an Internet Gateway, and 2 Private Subnets (for RDS) for strict data isolation.

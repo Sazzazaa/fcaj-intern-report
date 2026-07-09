@@ -25,8 +25,7 @@ Dự án **Project Management Dashboard** là một ứng dụng web toàn diệ
 ### 4. Kiến trúc giải pháp (Solution Architecture)
 Nền tảng áp dụng kiến trúc 3 lớp (Frontend - Backend - Database) được phân bổ vào các dịch vụ chuyên biệt của AWS, đặt bên trong một VPC (Virtual Private Cloud) có phân chia Subnet rõ ràng.
 
-![Project Architecture](/images/2-Proposal/aws-architecture.png)
-*(Lưu ý: Bạn hãy chèn ảnh sơ đồ kiến trúc AWS của hệ thống vào đây)*
+![Project Architecture](/images/5-Workshop/5.1-Workshop-overview/diagram1.jpg)
 
 *Thiết kế các thành phần & Dịch vụ AWS sử dụng:*
 - **AWS VPC (Mạng lưới ảo):** Tạo 1 Public Subnet (cho EC2) để kết nối với Internet qua Internet Gateway và 2 Private Subnets (cho RDS) để cô lập dữ liệu.
