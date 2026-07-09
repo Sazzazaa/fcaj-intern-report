@@ -23,4 +23,4 @@ Trong workshop này, bạn sẽ thực hành quá trình chuyển đổi và tri
     - **AWS Amplify**: Nền tảng lưu trữ và phân phối tự động mã nguồn Frontend (Next.js) ra môi trường mạng công cộng.
 
 Mục tiêu cuối cùng là kết nối thông suốt Frontend (trên AWS Amplify) với Backend (trên EC2) và Database (trên RDS), đảm bảo toàn bộ hệ thống hoạt động hoàn hảo và có thể truy cập public.
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.jpg)

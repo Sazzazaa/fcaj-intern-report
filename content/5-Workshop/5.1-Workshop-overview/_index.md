@@ -23,4 +23,4 @@ In this workshop, you will practice the process of migrating and deploying the e
     - **AWS Amplify**: A hosting and automated delivery platform for deploying the Frontend source code (Next.js) to the public internet.
 
 The ultimate goal is to seamlessly connect the Frontend (on AWS Amplify) with the Backend (on EC2) and the Database (on RDS), ensuring the entire system operates perfectly and is publicly accessible.
-![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.jpg)
