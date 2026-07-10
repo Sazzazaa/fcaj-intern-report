@@ -12,8 +12,8 @@ pre : " <b> 5.2. </b> "
 
 
 Trong toàn bộ bài Lab này, để giảm thiểu độ trễ (latency) và đảm bảo tính thống nhất, chúng ta sẽ chọn chung một Khu vực (Region):
-*   **Region Name:** `ap-southeast-1`
-*   **Region Location:** Singapore
+*   **Region Name:** `us-east-2`
+*   **Region Location:** Ohio
 
 ![AWS Region Selection](/images/5-Workshop/5.2-Prerequisite/aws-region.png)
 

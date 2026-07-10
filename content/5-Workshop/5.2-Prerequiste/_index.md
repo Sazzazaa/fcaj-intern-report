@@ -11,8 +11,8 @@ pre : " <b> 5.2. </b> "
 To complete this workshop, you need an active AWS account. It is recommended to use a newly created account to take advantage of the **AWS Free Tier** (12 months free for many core services such as EC2, RDS).
 
 Throughout this Lab, to minimize latency and ensure consistency, we will select a single Region:
-* **Region Name:** `ap-southeast-1`
-* **Region Location:** Singapore
+* **Region Name:** `us-east-2`
+* **Region Location:** Ohio
 
 ![AWS Region Selection](/images/5-Workshop/5.2-Prerequisite/aws-region.png)
 

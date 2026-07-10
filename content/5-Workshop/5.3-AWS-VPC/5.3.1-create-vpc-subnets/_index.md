@@ -43,17 +43,17 @@ The project needs 3 subnets:
 
 * **Subnet 1 (Public)**
   * **Subnet name:** `pm_public-subnet-1`
-  * **Availability Zone:** first AZ in your Region
+  * **Availability Zone:** `us-east-2a`
   * **IPv4 CIDR block:** `10.0.0.0/24`
 
 * **Subnet 2 (Private 1)**
   * **Subnet name:** `pm_private-subnet-1`
-  * **Availability Zone:** same AZ as the public subnet
+  * **Availability Zone:** `us-east-2a`
   * **IPv4 CIDR block:** `10.0.1.0/24`
 
 * **Subnet 3 (Private 2)**
   * **Subnet name:** `pm_private-subnet-2`
-  * **Availability Zone:** a different AZ
+  * **Availability Zone:** `us-east-2b` a different AZ
   * **IPv4 CIDR block:** `10.0.2.0/24`
 
 ![Create subnet](/images/5-Workshop/5.3-AWS-VPC/create-subnet.png)

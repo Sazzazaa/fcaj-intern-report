@@ -36,17 +36,17 @@ Hệ thống của chúng ta yêu cầu 3 Subnets: 1 Public Subnet cho EC2 và 2
 
 *   **Subnet 1 (Public):**
     *   **Subnet name:** `pm_public-subnet-1`
-    *   **Availability Zone:** `ap-southeast-1a`
+    *   **Availability Zone:** `us-east-2a`
     *   **IPv4 CIDR block:** `10.0.0.0/24`
 
 *   **Subnet 2 (Private 1):**
     *   **Subnet name:** `pm_private-subnet-1`
-    *   **Availability Zone:** `ap-southeast-1a`
+    *   **Availability Zone:** `us-east-2a`
     *   **IPv4 CIDR block:** `10.0.1.0/24`
 
 *   **Subnet 3 (Private 2 - Bắt buộc cho RDS):**
     *   **Subnet name:** `pm_private-subnet-2`
-    *   **Availability Zone:** `ap-southeast-1b` *(Khác với AZ của Subnet 1 & 2)*
+    *   **Availability Zone:** `us-east-2b` *(Khác với AZ của Subnet 1 & 2)*
     *   **IPv4 CIDR block:** `10.0.2.0/24`
 
 ![Create subnet button](/images/5-Workshop/5.3-AWS-VPC/create-subnet.png)
