@@ -9,6 +9,7 @@ pre: " <b> 5. </b> "
 # Triển khai hệ thống Project Management Dashboard lên AWS
 
 #### Tổng quan
+[Project Manager](https://main.d1rgtanccb2jd7.amplifyapp.com/)
 
 Workshop này mô tả quá trình đưa ứng dụng **Project Management Dashboard** từ môi trường local lên hạ tầng AWS theo mô hình 3 lớp:
 

@@ -9,6 +9,7 @@ pre: " <b> 5. </b> "
 # Deploying the Project Management Dashboard to AWS
 
 #### Overview
+[Project Manager](https://main.d1rgtanccb2jd7.amplifyapp.com/)
 
 This workshop explains how to deploy the **Project Management Dashboard** from a local development environment to AWS using a 3-tier architecture:
 
